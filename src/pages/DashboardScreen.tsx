@@ -85,7 +85,7 @@ export const DashboardScreen: React.FC = () => {
   })).filter(item => item.value > 0);
 
   // Example insight calculations
-  const duplicateFiles = assetTypeBreakdown.find(a => a.type === 'Duplicate/Old Version');
+  const duplicateFiles = assetTypeBreakdown.find(a => a.type === 'Duplicate');
   const cacheFiles = assetTypeBreakdown.find(a => a.type === 'AE/CapCut Cache');
   const duplicateGB = duplicateFiles ? duplicateFiles.totalSizeGB : 0;
   const duplicateCount = duplicateFiles ? duplicateFiles.count : 0;

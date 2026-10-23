@@ -48,7 +48,7 @@ export function generateMockFiles(): FileEntry[] {
     sizeGB: number,
     isDuplicate: boolean
   ): RecommendedAction => {
-    if (assetType === 'AE/CapCut Cache' || (isDuplicate && assetType === 'Duplicate/Old Version')) {
+    if (assetType === 'AE/CapCut Cache' || (isDuplicate && assetType === 'Duplicate')) {
       return 'Delete';
     }
     if (sizeGB > LARGE_FILE_THRESHOLD_GB && ageMonths > DELETE_AGE_MONTHS) {
@@ -176,7 +176,7 @@ export function generateMockFiles(): FileEntry[] {
         extension: '.yuv',
         sizeGB: variant.size,
         ageMonths,
-        assetType: 'Duplicate/Old Version',
+        assetType: 'Duplicate',
         isDuplicate: true,
         baseFilename: `${variant.name}_3840x2160_raw`,
         seq,

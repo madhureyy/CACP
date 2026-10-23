@@ -202,7 +202,7 @@ function seedFilesFromUVGAndCreatives(database: DatabaseSync, userId: string): v
 
   // Helper for recommendation
   const getAction = (assetType: string, ageMonths: number, sizeGB: number, isDuplicate: boolean): string => {
-    if (assetType === 'AE/CapCut Cache' || (isDuplicate && assetType === 'Duplicate/Old Version')) return 'Delete';
+    if (assetType === 'AE/CapCut Cache' || (isDuplicate && assetType === 'Duplicate')) return 'Delete';
     if (sizeGB > 5 && ageMonths > 18) return 'Delete';
     if (ageMonths > 12 && ageMonths <= 18) return 'Archive';
     if (sizeGB > 5 && ageMonths <= 12) return 'Move Offline';
@@ -218,7 +218,7 @@ function seedFilesFromUVGAndCreatives(database: DatabaseSync, userId: string): v
     const ageMonths = ((idx * 3) % 24) + 1;
     const createdAt = new Date(now.getTime() - ageMonths * 30 * 24 * 60 * 60 * 1000).toISOString();
     const isDup = seq.record_type === 'simulated_inventory_variant';
-    const assetType = isDup ? 'Duplicate/Old Version' : (rawGib > 10 ? '8K Video' : '4K Video');
+    const assetType = isDup ? 'Duplicate' : (rawGib > 10 ? '8K Video' : '4K Video');
     const action = getAction(assetType, ageMonths, sizeGB, isDup);
 
     const emissions = calculateStorageEmissions({ sizeGB, region: 'US', provider: 'gcs' });

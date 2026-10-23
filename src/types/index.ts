@@ -1,4 +1,4 @@
-export type AssetType = 'RAW Image' | '4K Video' | '8K Video' | 'AE/CapCut Project' | 'AE/CapCut Cache' | 'Duplicate/Old Version' | 'Other';
+export type AssetType = 'RAW Image' | '4K Video' | '8K Video' | 'AE/CapCut Project' | 'AE/CapCut Cache' | 'Duplicate' | 'Old Version' | 'Other';
 
 export type RecommendedAction = 'Delete' | 'Archive' | 'Move Offline' | 'Keep';
 

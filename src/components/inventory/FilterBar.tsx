@@ -17,7 +17,8 @@ const ASSET_TYPES: (AssetType | 'All')[] = [
   '8K Video',
   'AE/CapCut Project',
   'AE/CapCut Cache',
-  'Duplicate/Old Version',
+  'Duplicate',
+  'Old Version',
   'Other'
 ];
 

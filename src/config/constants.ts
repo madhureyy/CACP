@@ -51,7 +51,8 @@ export const ASSET_TYPE_COLORS: Record<string, string> = {
   '8K Video': '#F59E0B',
   'AE/CapCut Project': '#8B5CF6',
   'AE/CapCut Cache': '#EC4899',
-  'Duplicate/Old Version': '#F87171',
+  'Duplicate': '#F87171',
+  'Old Version': '#FB923C',
   'Other': '#64748B',
 };
 
@@ -70,7 +71,8 @@ export const ASSET_TYPE_BADGE_COLORS: Record<string, { bg: string; text: string 
   '8K Video': { bg: 'bg-amber-100', text: 'text-amber-700' },
   'AE/CapCut Project': { bg: 'bg-purple-100', text: 'text-purple-700' },
   'AE/CapCut Cache': { bg: 'bg-pink-100', text: 'text-pink-700' },
-  'Duplicate/Old Version': { bg: 'bg-red-100', text: 'text-red-700' },
+  'Duplicate': { bg: 'bg-red-100', text: 'text-red-700' },
+  'Old Version': { bg: 'bg-orange-100', text: 'text-orange-700' },
   'Other': { bg: 'bg-slate-100', text: 'text-slate-600' },
 };
 
