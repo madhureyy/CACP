@@ -113,7 +113,7 @@ export const InventoryScreen: React.FC = () => {
           <span className="text-teal-600 font-bold">{selectedIds.size}</span> files selected
         </div>
         <div className="text-slate-500 text-sm md:text-base text-center">
-          Selected files would save <span className="text-teal-600 font-semibold">${totalMonthlySavings.toFixed(2)}/month</span> and <span className="text-teal-600 font-semibold">{totalCarbonSavings.toFixed(2)} kg CO₂e/year</span>
+          Selected files would save <span className="text-teal-600 font-semibold">${totalMonthlySavings.toFixed(2)}/month</span> and <span className="text-teal-600 font-semibold">{totalCarbonSavings < 0.1 ? totalCarbonSavings.toFixed(3) : totalCarbonSavings.toFixed(2)} kg CO₂e/year</span>
         </div>
         <button
           disabled={selectedIds.size === 0}

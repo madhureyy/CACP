@@ -110,15 +110,20 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const recalculateFiles = (currentFiles: FileEntry[], currentRegion: Region, currentProvider: CloudProvider): FileEntry[] => {
+    const pue = currentProvider === 'azure' ? 1.12 : 1.10;
+    const embodiedCarbonPerGbYear = 0.0144;
+    const pricePerGb = currentProvider === 'azure' ? AZURE_PRICE_PER_GB_MONTH : GCS_PRICE_PER_GB_MONTH;
+
     return currentFiles.map(file => {
-      const annualCarbonKg = (file.sizeGB * ENERGY_PER_GB_MONTH_KWH * GRID_CARBON_INTENSITY[currentRegion] * 12) / 1000;
-      const pricePerGb = currentProvider === 'gcs' ? GCS_PRICE_PER_GB_MONTH : AZURE_PRICE_PER_GB_MONTH;
+      const operationalCarbonKg = (file.sizeGB * ENERGY_PER_GB_MONTH_KWH * pue * GRID_CARBON_INTENSITY[currentRegion] * 12) / 1000;
+      const embodiedCarbonKg = file.sizeGB * embodiedCarbonPerGbYear;
+      const annualCarbonKg = operationalCarbonKg + embodiedCarbonKg;
       const monthlyCost = file.sizeGB * pricePerGb;
       
       return {
         ...file,
-        annualCarbonKg,
-        monthlyCost
+        annualCarbonKg: Number(annualCarbonKg.toFixed(4)),
+        monthlyCost: Number(monthlyCost.toFixed(2))
       };
     });
   };

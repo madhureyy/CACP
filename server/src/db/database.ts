@@ -209,9 +209,28 @@ function seedFilesFromUVGAndCreatives(database: DatabaseSync, userId: string): v
     return 'Keep';
   };
 
+  const KNOWN_UVG_SIZES: Record<string, number> = {
+    Beauty: 3.87,
+    Bosphorus: 2.66,
+    CityAlley: 3.16,
+    FlowerFocus: 3.46,
+    FlowerKids: 2.87,
+    FlowerPan: 4.05,
+    HoneyBee: 3.51,
+    Jockey: 3.22,
+    Lips: 3.13,
+    RaceNight: 3.20,
+    ReadySetGo: 3.06,
+    RiverBank: 3.15,
+    ShakeNDry: 1.75,
+    SunBath: 1.85,
+    Twilight: 3.10,
+    YachtRide: 2.68,
+  };
+
   // Seed UVG official sequences as primary 4K / 8K Video assets
   uvgRows.forEach((seq, idx) => {
-    const rawGib = seq.size_8bit_yuv_gib || seq.size_10bit_yuv_gib || (seq.frame_rate_fps === 120 ? 3.5 : 2.8);
+    const rawGib = seq.size_8bit_yuv_gib || seq.size_10bit_yuv_gib || KNOWN_UVG_SIZES[seq.sequence_name] || (seq.frame_rate_fps === 120 ? 3.5 : 2.8);
     const sizeBytes = Math.round(rawGib * 1024 * 1024 * 1024 * 1.07374);
     const sizeGB = sizeBytes / (1024 * 1024 * 1024);
 
@@ -258,7 +277,7 @@ function seedFilesFromUVGAndCreatives(database: DatabaseSync, userId: string): v
     const isProRes = idx % 2 === 0;
     const ext = isProRes ? '.mov' : '.mp4';
     const tag = isProRes ? 'ProRes422HQ' : 'HEVC_Main10';
-    const rawGib = seq.size_8bit_yuv_gib || (seq.frame_rate_fps === 120 ? 3.5 : 2.8);
+    const rawGib = seq.size_8bit_yuv_gib || KNOWN_UVG_SIZES[seq.sequence_name] || (seq.frame_rate_fps === 120 ? 3.5 : 2.8);
     const sizeGB = isProRes ? Number((rawGib * 0.45).toFixed(2)) : Number((rawGib * 0.12).toFixed(2));
     const sizeBytes = Math.round(sizeGB * 1024 * 1024 * 1024);
     const ageMonths = ((idx * 2) % 18) + 1;

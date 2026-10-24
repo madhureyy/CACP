@@ -164,7 +164,12 @@ export const FileTable: React.FC<FileTableProps> = ({
                       ${file.monthlyCost.toFixed(2)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                      {file.annualCarbonKg.toFixed(2)} kg
+                      <div className="font-medium text-slate-700">
+                        {file.annualCarbonKg < 0.1 ? file.annualCarbonKg.toFixed(3) : file.annualCarbonKg.toFixed(2)} kg
+                      </div>
+                      <div className="text-xs text-slate-400">
+                        {(file.annualCarbonKg * 1000).toFixed(0)} g CO₂e
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${actionColor.bg} ${actionColor.text}`}>

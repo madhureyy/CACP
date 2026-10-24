@@ -180,7 +180,14 @@ const ReportScreen: React.FC = () => {
                       <td className="px-4 py-3">{formatBytes(file.sizeGB)}</td>
                       <td className="px-4 py-3">{file.ageMonths}</td>
                       <td className="px-4 py-3">{formatCurrency(file.monthlyCost)}</td>
-                      <td className="px-4 py-3">{file.annualCarbonKg.toFixed(2)} kg</td>
+                      <td className="px-4 py-3">
+                        <span className="font-medium">
+                          {file.annualCarbonKg < 0.1 ? file.annualCarbonKg.toFixed(3) : file.annualCarbonKg.toFixed(2)} kg
+                        </span>
+                        <span className="text-xs text-slate-400 print:text-gray-500 block">
+                          {(file.annualCarbonKg * 1000).toFixed(0)} g CO₂e
+                        </span>
+                      </td>
                       <td className={`px-4 py-3 font-medium ${ACTION_COLORS[file.recommendedAction] || ''}`}>
                         {file.recommendedAction}
                       </td>
