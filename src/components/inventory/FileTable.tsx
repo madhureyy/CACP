@@ -161,7 +161,13 @@ export const FileTable: React.FC<FileTableProps> = ({
                       {file.ageMonths} months
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                      ${file.monthlyCost.toFixed(2)}
+                      <div className="font-medium text-slate-700">
+                        {file.monthlyCost < 0.1 ? `$${file.monthlyCost.toFixed(3)}` : `$${file.monthlyCost.toFixed(2)}`}
+                        <span className="text-xs text-slate-400 font-normal ml-0.5">/mo</span>
+                      </div>
+                      <div className="text-xs text-slate-400">
+                        ${(file.monthlyCost * 12).toFixed(2)}/yr
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                       <div className="font-medium text-slate-700">

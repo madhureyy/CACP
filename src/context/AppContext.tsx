@@ -123,7 +123,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       return {
         ...file,
         annualCarbonKg: Number(annualCarbonKg.toFixed(4)),
-        monthlyCost: Number(monthlyCost.toFixed(2))
+        monthlyCost: Number(monthlyCost.toFixed(4))
       };
     });
   };

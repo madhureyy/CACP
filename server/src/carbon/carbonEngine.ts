@@ -127,7 +127,7 @@ export function calculateStorageEmissions(params: StorageCalculationParams): Sto
     egressCarbonKg: Number(egressCarbonKg.toFixed(4)),
     totalCarbonKg: Number(totalCarbonKg.toFixed(4)),
     annualCarbonKg: Number(annualCarbonKg.toFixed(4)),
-    monthlyCostUSD: Number(monthlyCostUSD.toFixed(2)),
+    monthlyCostUSD: Number(monthlyCostUSD.toFixed(4)),
     totalCostUSD: Number(totalCostUSD.toFixed(2)),
     equivalents: {
       treeSeedlingsToOffsetAnnual: Number(treeSeedlingsToOffsetAnnual.toFixed(2)),
